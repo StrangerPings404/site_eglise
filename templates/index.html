@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Église Saint-Pierre</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Bienvenue sur notre site</h1>
-    <p>Prochaine messe : Dimanche 10h</p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <h1>Bienvenue sur notre site de Maison De Vie</h1>
+    <p>Découvrez nos activités...</p>
+</section>
+{% endblock %}
