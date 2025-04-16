@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Vidéos Paroissiales</h2>
+    
+    <!-- Formulaire d'ajout (Admin) -->
+    <form id="videoForm" class="mb-4">
+        <input type="text" id="youtubeUrl" placeholder="Lien YouTube (ex: https://youtu.be/ABC123)" required>
+        <input type="text" id="videoTitle" placeholder="Titre">
+        <textarea id="videoDesc" placeholder="Description"></textarea>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+
+    <!-- Liste des vidéos -->
+    <div id="videoGallery" class="row">
+        {% for video in videos %}
+        <div class="col-md-4 mb-4">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" 
+                        src="https://www.youtube.com/embed/{{ video.youtube_id }}" 
+                        allowfullscreen></iframe>
+            </div>
+            <h5>{{ video.title }}</h5>
+            <p>{{ video.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/videos.js') }}"></script>
+{% endblock %}

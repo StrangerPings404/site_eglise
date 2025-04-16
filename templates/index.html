@@ -1,8 +1,50 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="hero">
-    <h1>Bienvenue sur notre site de Maison De Vie</h1>
-    <p>Découvrez nos activités...</p>
-</section>
+<div class="row">
+    <!-- Hero Section -->
+    <div class="col-12 p-5 bg-light text-center">
+        <h1 class="display-4">Bienvenue sur votre site</h1>
+        <p class="lead">Rejoignez-nous pour nos célébrations et activités</p>
+    </div>
+
+    <!-- Cards Section -->
+    <div class="col-md-4 mt-4">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename='images/cultes.jpg') }}" class="card-img-top" alt="Cultes">
+            <div class="card-body">
+                <h5 class="card-title">Calendrier</h5>
+                <p class="card-text">Consultez nos prochains événements.</p>
+                <a href="/calendrier" class="btn btn-primary">Voir le calendrier</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mt-4">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename='images/groupe.jpg') }}" class="card-img-top" alt="Groupe">
+            <div class="card-body">
+                <h5 class="card-title">Galerie Photo</h5>
+                <p class="card-text">Découvrez nos moments partagés.</p>
+                <a href="/galerie" class="btn btn-primary">Voir la galerie</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mt-4">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename='images/contact.jpg') }}" class="card-img-top" alt="Contact">
+            <div class="card-body">
+                <h5 class="card-title">Nous contacter</h5>
+                <p class="card-text">Envoyez-nous un message.</p>
+                <a href="/contact" class="btn btn-primary">Contact</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
