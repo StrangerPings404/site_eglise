@@ -1,61 +1,121 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
-    <!-- Hero Section -->
-    <div class="col-12 p-5 bg-light text-center">
-        <h1 class="display-4">Bienvenue sur votre site</h1>
+<!-- SECTION ACCUEIL -->
+<section id="accueil" class="d-flex align-items-center justify-content-center text-white text-center" style="height: 100vh; background: url('{{ url_for('static', filename='images/eglise.jpg') }}') center/cover no-repeat;">
+    <div class="bg-dark bg-opacity-50 p-5 rounded">
+        <h1 class="display-3 fw-bold">Bienvenue à l'Église Maison De Vie</h1>
+        <p class="lead"><em>"Je ne suis pas venu appeler à la repentance des justes, mais des pécheurs."</em></p>
+        <p class="lead"><b>"Luc 5:32"</b></p>
         <p class="lead">Rejoignez-nous pour nos célébrations et activités</p>
+        <a href="#a-propos" class="btn btn-light btn-lg mt-3">Découvrir</a>
     </div>
+</section>
 
-    <!-- Cards Section -->
-    <div class="col-md-4 mt-4">
-        <div class="card h-100">
-            <img src="{{ url_for('static', filename='images/cultes.jpg') }}" class="card-img-top" alt="Cultes & Événements">
-            <div class="card-body">
-                <h5 class="card-title">Calendrier</h5>
-                <p class="card-text">Consultez nos prochains événements.</p>
-                <a href="/calendrier" class="btn btn-primary">Voir le calendrier</a>
+<!-- SECTION À PROPOS -->
+<section id="a-propos" class="py-5 bg-light text-center">
+    <div class="container">
+        <h2 class="mb-4">À propos de nous</h2>
+        <section id="a-propos" class="my-5">
+            <div id="aboutCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="carousel-image" style="background-image: url('{{ url_for('static', filename='images/eglise1.jpg') }}');">
+                            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
+                                <h2>Notre Mission</h2>
+                                <p>Apporter l'espoir, l'amour et la vérité biblique à chacun.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="carousel-image" style="background-image: url('{{ url_for('static', filename='images/eglise2.jpg') }}');">
+                            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
+                                <h2>Une Famille</h2>
+                                <p>Une communauté unie dans la foi et l'amour de Christ.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="carousel-image" style="background-image: url('{{ url_for('static', filename='images/eglise3.jpg') }}');">
+                            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
+                                <h2>Engagée</h2>
+                                <p>Des actions concrètes pour servir Dieu et les autres.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contrôles (flèches) -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#aboutCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#aboutCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+            </div>
+        </section>
+    </div>
+</section>
+
+
+<!-- SECTION HORAIRES / CULTES -->
+<section id="horaires" class="py-5 text-center">
+    <div class="container">
+        <h2 class="mb-4">Horaires des cultes</h2>
+        <p class="lead">📅 Chaque dimanche à 10h00</p>
+        <p class="lead">📍 Hcenter 10 Rue Benjamen Franklin, La Rochette 77000</p>
+    </div>
+</section>
+
+<!-- SECTION GALERIE -->
+<section id="galerie" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Galerie</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename='images/groupe.jpg') }}" class="img-fluid rounded shadow-sm mb-4" alt="Image 1">
+            </div>
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename='images/cultes.jpg') }}" class="img-fluid rounded shadow-sm mb-4" alt="Image 2">
+            </div>
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename='images/contact.jpg') }}" class="img-fluid rounded shadow-sm mb-4" alt="Image 3">
             </div>
         </div>
     </div>
+</section>
 
-    <div class="col-md-4 mt-4">
-        <div class="card h-100">
-            <img src="{{ url_for('static', filename='images/groupe.jpg') }}" class="card-img-top" alt="Média">
-            <div class="card-body">
-                <h5 class="card-title">Galerie Photo</h5>
-                <p class="card-text">Découvrez nos moments partagés.</p>
-                <a href="/galerie" class="btn btn-primary">Voir la galerie</a>
-            </div>
+<!-- SECTION VIDÉOS -->
+<section id="videos" class="py-5 text-center">
+    <div class="container">
+        <h2 class="mb-4">Vidéos</h2>
+        <div class="ratio ratio-16x9 mb-3">
+            <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" title="YouTube video" allowfullscreen></iframe>
         </div>
+        <p class="lead">Retrouvez toutes nos vidéos sur notre chaîne YouTube !</p>
     </div>
+</section>
 
-    <div class="col-md-4 mt-4">
-        <div class="card h-100">
-            <img src="{{ url_for('static', filename='images/contact.jpg') }}" class="card-img-top" alt="Contact">
-            <div class="card-body">
-                <h5 class="card-title">Nous contacter</h5>
-                <p class="card-text">Envoyez-nous un message.</p>
-                <a href="/contact" class="btn btn-primary">Contact</a>
-            </div>
-        </div>
+<!-- SECTION CONTACT -->
+<section id="contact" class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="mb-4">Contact</h2>
+        <p class="lead">Une question ? Besoin de prière ou de renseignement ?</p>
+        <a href="/contact" class="btn btn-primary btn-lg">Nous contacter</a>
     </div>
+</section>
 
-    <div class="col-md-4 mt-4">
-        <div class="card h-100">
-            <img src="{{ url_for('static', filename='images/don.jpg') }}" class="card-img-top" alt="Don">
-            <div class="card-body">
-                <h5 class="card-title">Libre à vous</h5>
-                <p class="card-text">De faire un don.</p>
-                <a href="/don" class="btn btn-primary">Don</a>
-            </div>
-        </div>
+<!-- SECTION DON -->
+<section id="don" class="py-5 text-center">
+    <div class="container">
+        <h2 class="mb-4">Soutenir l'Église</h2>
+        <p class="lead">Vos dons nous permettent de faire grandir l’œuvre de Dieu 🙏</p>
+        <a href="/don" class="btn btn-success btn-lg">Faire un don</a>
     </div>
-</div>
-{% endblock %}
-
-{% block extra_js %}
-<!-- Bootstrap JS Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</section>
 {% endblock %}

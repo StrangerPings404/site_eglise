@@ -1,0 +1,43 @@
+/* Navbar - Fond et ombre */
+.navbar {
+    background-color: #1e3a8a;  /* Bleu foncé */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Ombre douce pour l'effet */
+}
+
+/* Liens de la navbar : couleur par défaut + effet au survol */
+.navbar-nav .nav-link {
+    color: white !important;  /* Liens en blanc */
+    transition: color 0.3s ease;   /* Transition douce pour le hover */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffe082 !important;  /* Jaune doré au survol */
+    background-color: rgba(255, 255, 255, 0.1);  /* Fond léger au hover */
+}
+
+/* Icônes dans la navbar */
+.navbar .navbar-brand img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f0f8ff;
+    padding: 2rem;
+}
+
+/* Footer : Fond sombre, texte clair */
+footer {
+    background-color: #343a40;  /* Gris foncé */
+    color: white;  /* Texte en blanc */
+    padding: 20px 0;  /* Espacement vertical */
+    text-align: center;  /* Centrer le texte */
+}
+
+footer p {
+    margin: 0;  /* Enlever les marges autour du texte */
+    font-size: 1rem;  /* Taille de police plus petite pour le footer */
+}
