@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="alert alert-success text-center">
+        <h2><i class="bi bi-check-circle"></i> Merci pour votre don !</h2>
+        <p class="mt-3">
+            Votre contribution nous est précieuse. Un reçu vous a été envoyé par email.
+        </p>
+        <a href="{{ url_for('home') }}" class="btn btn-primary mt-3">
+            Retour à l'accueil
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Gestion de la Galerie</h2>
+    
+    <!-- Formulaire d'upload -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Ajouter une nouvelle photo</h5>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="fileInput" class="form-label">Sélectionner une image</label>
+                    <input class="form-control" type="file" name="file" id="fileInput" required accept="image/*">
+                </div>
+                <div class="mb-3">
+                    <label for="captionInput" class="form-label">Légende (optionnelle)</label>
+                    <input type="text" class="form-control" name="caption" id="captionInput" placeholder="Description de la photo">
+                </div>
+                <button type="submit" class="btn btn-primary">Uploader</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Liste des photos existantes -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Photos existantes</h5>
+            {% if not photos %}
+                <p>Aucune photo dans la galerie pour le moment.</p>
+            {% else %}
+                <div class="row">
+                    {% for photo in photos %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <img src="{{ url_for('uploaded_file', filename=photo.filename) }}" 
+                                 class="card-img-top img-thumbnail" 
+                                 alt="{{ photo.caption }}">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    {% if photo.caption %}
+                                        {{ photo.caption }}
+                                    {% else %}
+                                        <em>Aucune légende</em>
+                                    {% endif %}
+                                </p>
+                                <small class="text-muted">
+                                    Ajoutée le {{ photo.date_uploaded.strftime('%d/%m/%Y') }}
+                                </small>
+                            </div>
+                            <div class="card-footer">
+                                <form action="{{ url_for('delete_photo', photo_id=photo.id) }}" method="POST">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash"></i> Supprimer
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+// Gestion de l'upload via AJAX
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    
+    fetch('{{ url_for("upload_file") }}', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.reload();  // Recharger après succès
+        } else {
+            alert('Erreur: ' + (data.error || "Échec de l'upload"));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Une erreur est survenue lors de l\'upload');
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Faire un don</h1>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Soutenez notre église</h5>
+                    <p class="card-text">
+                        Vos dons nous aident à maintenir nos activités et projets.
+                        Merci pour votre générosité !
+                    </p>
+                    
+                    <form method="POST" id="donation-form">
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Montant (€)</label>
+                            <input type="number" class="form-control" id="amount" 
+                                   name="amount" min="5" step="1" value="20" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-credit-card"></i> Faire un don sécurisé
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Autres moyens de don</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Par chèque</strong><br>
+                            À l'ordre de "Église Maison De Vie"<br>
+                            Adresse: [Votre adresse]
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Par virement</strong><br>
+                            IBAN: FRXX XXXX XXXX XXXX<br>
+                            BIC: XXXXXXXX
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ajoutez ceci avant </body> -->
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Galerie Photo</h1>
+    
+    {% if photos %}
+    <div class="row">
+        {% for photo in photos %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ url_for('uploaded_file', filename=photo.filename) }}" 
+                     class="card-img-top img-fluid" 
+                     alt="{{ photo.caption }}">
+                {% if photo.caption %}
+                <div class="card-body">
+                    <p class="card-text">{{ photo.caption }}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">Aucune photo disponible pour le moment.</div>
+    {% endif %}
+</div>
+{% endblock %}

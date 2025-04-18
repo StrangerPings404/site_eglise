@@ -11,7 +11,7 @@
     <!-- Cards Section -->
     <div class="col-md-4 mt-4">
         <div class="card h-100">
-            <img src="{{ url_for('static', filename='images/cultes.jpg') }}" class="card-img-top" alt="Cultes">
+            <img src="{{ url_for('static', filename='images/cultes.jpg') }}" class="card-img-top" alt="Cultes & Événements">
             <div class="card-body">
                 <h5 class="card-title">Calendrier</h5>
                 <p class="card-text">Consultez nos prochains événements.</p>
@@ -22,7 +22,7 @@
 
     <div class="col-md-4 mt-4">
         <div class="card h-100">
-            <img src="{{ url_for('static', filename='images/groupe.jpg') }}" class="card-img-top" alt="Groupe">
+            <img src="{{ url_for('static', filename='images/groupe.jpg') }}" class="card-img-top" alt="Média">
             <div class="card-body">
                 <h5 class="card-title">Galerie Photo</h5>
                 <p class="card-text">Découvrez nos moments partagés.</p>
@@ -38,6 +38,17 @@
                 <h5 class="card-title">Nous contacter</h5>
                 <p class="card-text">Envoyez-nous un message.</p>
                 <a href="/contact" class="btn btn-primary">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mt-4">
+        <div class="card h-100">
+            <img src="{{ url_for('static', filename='images/don.jpg') }}" class="card-img-top" alt="Don">
+            <div class="card-body">
+                <h5 class="card-title">Libre à vous</h5>
+                <p class="card-text">De faire un don.</p>
+                <a href="/don" class="btn btn-primary">Don</a>
             </div>
         </div>
     </div>

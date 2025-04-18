@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Panneau d'Administration</h3>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <!-- Section Calendrier -->
+                        <a href="{{ url_for('manage_events') }}" class="list-group-item list-group-item-action">
+                            <i class="fas fa-calendar-alt me-2"></i>Gérer le Calendrier
+                        </a>
+                        
+                        <!-- Section Galerie -->
+                        <a href="{{ url_for('manage_gallery') }}" class="list-group-item list-group-item-action">
+                            <i class="fas fa-images me-2"></i>Gérer la Galerie Photo
+                        </a>
+                        
+                        <!-- Section Vidéos -->
+                        <a href="{{ url_for('manage_videos') }}" class="list-group-item list-group-item-action">
+                            <i class="fas fa-video me-2"></i>Gérer les Vidéos
+                        </a>
+                        
+                        <!-- Déconnexion -->
+                        <a href="{{ url_for('logout') }}" class="list-group-item list-group-item-danger">
+                            <i class="fas fa-sign-out-alt me-2"></i>Déconnexion
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .list-group-item {
+        transition: all 0.3s ease;
+    }
+    .list-group-item:hover {
+        transform: translateX(5px);
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Font Awesome pour les icônes -->
+<script src="https://kit.fontawesome.com/votre-code.js" crossorigin="anonymous"></script>
+{% endblock %}

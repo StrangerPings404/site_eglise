@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Calendrier des Événements</h1>
+    
+    <div id="calendar" class="mt-4"></div>
+    
+    <!-- Section pour afficher les événements -->
+    <div id="eventDetails" class="mt-4 d-none">
+        <h3 id="eventTitle"></h3>
+        <p id="eventDate"></p>
+        <p id="eventDescription"></p>
+        <a id="addToCalendarBtn" class="btn btn-primary mt-3" target="_blank">
+            <i class="bi bi-calendar-plus"></i> Ajouter à mon calendrier
+        </a>
+    </div>
+</div>
+
+<!-- Inclure FullCalendar CSS et JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/fr.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'fr',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        events: '/api/events',
+        eventClick: function(info) {
+            const event = info.event;
+
+            document.getElementById('eventTitle').textContent = info.event.title;
+            document.getElementById('eventDate').textContent = info.event.start.toLocaleString();
+            document.getElementById('eventDescription').textContent = info.event.extendedProps.description;
+            document.getElementById('eventDetails').classList.remove('d-none');
+
+            // Génération du lien pour l'ajout au calendrier
+            const startDate = formatDateForCalendar(event.start);
+            const endDate = event.end ? formatDateForCalendar(event.end) : startDate;
+            const title = encodeURIComponent(event.title);
+            const description = encodeURIComponent(event.extendedProps.description || '');
+            
+            const location = encodeURIComponent("Église Maison De Vie");
+            const calendarUrl = `data:text/calendar;charset=utf8,BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART:${startDate}
+DTEND:${endDate}
+SUMMARY:${title}
+DESCRIPTION:${description}
+LOCATION:${location}
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Rappel
+END:VALARM
+END:VEVENT
+END:VCALENDAR`;
+            
+const btn = document.getElementById('addToCalendarBtn');
+            btn.href = calendarUrl;
+            btn.download = `${title}.ics`;
+            btn.style.display = 'inline-block'; // S'assurer que le bouton est visible
+            
+            btn.onclick = function(e) {
+    e.preventDefault();
+    // Créer un lien temporaire pour forcer le téléchargement
+    const tempLink = document.createElement('a');
+    tempLink.href = this.href;
+    tempLink.download = this.download;
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
+    
+    // Feedback utilisateur
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="bi bi-check"></i> Ajouté !';
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+    }, 2000);
+};
+
+
+
+
+            document.getElementById('addToCalendarBtn').href = calendarUrl;
+            document.getElementById('addToCalendarBtn').download = `${title}.ics`;
+            
+            document.getElementById('eventDetails').classList.remove('d-none');            
+        
+        
+        }
+    });
+    calendar.render();
+
+        // Fonction pour formater les dates au format iCalendar
+        function formatDateForCalendar(date) {
+        return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+    }
+});
+</script>
+
+<style>
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.fc-event {
+    cursor: pointer;
+}
+</style>
+{% endblock %}
